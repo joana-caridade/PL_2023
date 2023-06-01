@@ -1,3 +1,13 @@
-ESCREVER "ol´a mundo!";
-ESCREVER "PL ", 2 ,"o ano de ", "ESI";
-ESCREVER "soma de ", 9, " com ", 3*4 , " = ", 9+2*3 ;
+ESCREVER "olá mundo!";
+ESCREVER "PL ", 2 ,"o ano de", "ESI";
+ESCREVER "soma de ", 9, "com ", 3*4 , "=", 9+2*3 ;
+vAR ano = 2023, mes="maio";
+tmp = 7+3 ;
+a = 10 (30 + tmp ) ;
+a ++; a += 10; b = tmp * (a + 10);
+ESCREVER "TMP: ", tmp, " A: ", a, " B: ", b, " ano: ", ano, " mes: ", mes;
+
+var teste = ALEATORIO(10);
+ESCREVER "Teste: ", teste;
+var teste = ENTRADA();
+ESCREVER "Teste: ", teste;

@@ -1,0 +1,1238 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> codigo
+Rule 1     codigo -> S ;
+Rule 2     codigo -> codigo S ;
+Rule 3     S -> comando
+Rule 4     comando -> ESCREVER args
+Rule 5     comando -> VAR var_args
+Rule 6     comando -> var = arg
+Rule 7     comando -> var_operacoes
+Rule 8     var_args -> var = arg
+Rule 9     var_args -> var_args , var = arg
+Rule 10    args -> arg
+Rule 11    args -> args , arg
+Rule 12    arg -> str
+Rule 13    arg -> arith
+Rule 14    arg -> variavel
+Rule 15    arg -> funcao
+Rule 16    funcao -> ENTRADA ( )
+Rule 17    funcao -> ALEATORIO ( arith )
+Rule 18    arith -> number
+Rule 19    arith -> ( number )
+Rule 20    variavel -> var
+Rule 21    arith -> variavel
+Rule 22    arith -> ( variavel )
+Rule 23    var_operacoes -> variavel + = arg
+Rule 24    var_operacoes -> variavel - = arg
+Rule 25    var_operacoes -> variavel + +
+Rule 26    var_operacoes -> variavel - -
+Rule 27    number -> arith + arith
+Rule 28    number -> arith - arith
+Rule 29    number -> arith / arith
+Rule 30    number -> arith * arith
+Rule 31    number -> arith arith
+Rule 32    number -> num
+
+Terminals, with rules where they appear
+
+(                    : 16 17 19 22
+)                    : 16 17 19 22
+*                    : 30
++                    : 23 25 25 27
+,                    : 9 11
+-                    : 24 26 26 28
+/                    : 29
+;                    : 1 2
+=                    : 6 8 9 23 24
+ALEATORIO            : 17
+ENTRADA              : 16
+ESCREVER             : 4
+VAR                  : 5
+error                : 
+num                  : 32
+str                  : 12
+var                  : 6 8 9 20
+
+Nonterminals, with rules where they appear
+
+S                    : 1 2
+arg                  : 6 8 9 10 11 23 24
+args                 : 4 11
+arith                : 13 17 27 27 28 28 29 29 30 30 31 31
+codigo               : 2 0
+comando              : 3
+funcao               : 15
+number               : 18 19
+var_args             : 5 9
+var_operacoes        : 7
+variavel             : 14 21 22 23 24 25 26
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . codigo
+    (1) codigo -> . S ;
+    (2) codigo -> . codigo S ;
+    (3) S -> . comando
+    (4) comando -> . ESCREVER args
+    (5) comando -> . VAR var_args
+    (6) comando -> . var = arg
+    (7) comando -> . var_operacoes
+    (23) var_operacoes -> . variavel + = arg
+    (24) var_operacoes -> . variavel - = arg
+    (25) var_operacoes -> . variavel + +
+    (26) var_operacoes -> . variavel - -
+    (20) variavel -> . var
+
+    ESCREVER        shift and go to state 4
+    VAR             shift and go to state 5
+    var             shift and go to state 6
+
+    codigo                         shift and go to state 1
+    S                              shift and go to state 2
+    comando                        shift and go to state 3
+    var_operacoes                  shift and go to state 7
+    variavel                       shift and go to state 8
+
+state 1
+
+    (0) S' -> codigo .
+    (2) codigo -> codigo . S ;
+    (3) S -> . comando
+    (4) comando -> . ESCREVER args
+    (5) comando -> . VAR var_args
+    (6) comando -> . var = arg
+    (7) comando -> . var_operacoes
+    (23) var_operacoes -> . variavel + = arg
+    (24) var_operacoes -> . variavel - = arg
+    (25) var_operacoes -> . variavel + +
+    (26) var_operacoes -> . variavel - -
+    (20) variavel -> . var
+
+    ESCREVER        shift and go to state 4
+    VAR             shift and go to state 5
+    var             shift and go to state 6
+
+    S                              shift and go to state 9
+    comando                        shift and go to state 3
+    var_operacoes                  shift and go to state 7
+    variavel                       shift and go to state 8
+
+state 2
+
+    (1) codigo -> S . ;
+
+    ;               shift and go to state 10
+
+
+state 3
+
+    (3) S -> comando .
+
+    ;               reduce using rule 3 (S -> comando .)
+
+
+state 4
+
+    (4) comando -> ESCREVER . args
+    (10) args -> . arg
+    (11) args -> . args , arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    args                           shift and go to state 11
+    arg                            shift and go to state 12
+    arith                          shift and go to state 14
+    variavel                       shift and go to state 15
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 5
+
+    (5) comando -> VAR . var_args
+    (8) var_args -> . var = arg
+    (9) var_args -> . var_args , var = arg
+
+    var             shift and go to state 24
+
+    var_args                       shift and go to state 23
+
+state 6
+
+    (6) comando -> var . = arg
+    (20) variavel -> var .
+
+    =               shift and go to state 25
+    +               reduce using rule 20 (variavel -> var .)
+    -               reduce using rule 20 (variavel -> var .)
+
+
+state 7
+
+    (7) comando -> var_operacoes .
+
+    ;               reduce using rule 7 (comando -> var_operacoes .)
+
+
+state 8
+
+    (23) var_operacoes -> variavel . + = arg
+    (24) var_operacoes -> variavel . - = arg
+    (25) var_operacoes -> variavel . + +
+    (26) var_operacoes -> variavel . - -
+
+    +               shift and go to state 26
+    -               shift and go to state 27
+
+
+state 9
+
+    (2) codigo -> codigo S . ;
+
+    ;               shift and go to state 28
+
+
+state 10
+
+    (1) codigo -> S ; .
+
+    ESCREVER        reduce using rule 1 (codigo -> S ; .)
+    VAR             reduce using rule 1 (codigo -> S ; .)
+    var             reduce using rule 1 (codigo -> S ; .)
+    $end            reduce using rule 1 (codigo -> S ; .)
+
+
+state 11
+
+    (4) comando -> ESCREVER args .
+    (11) args -> args . , arg
+
+    ;               reduce using rule 4 (comando -> ESCREVER args .)
+    ,               shift and go to state 29
+
+
+state 12
+
+    (10) args -> arg .
+
+    ,               reduce using rule 10 (args -> arg .)
+    ;               reduce using rule 10 (args -> arg .)
+
+
+state 13
+
+    (12) arg -> str .
+
+    ,               reduce using rule 12 (arg -> str .)
+    ;               reduce using rule 12 (arg -> str .)
+
+
+state 14
+
+    (13) arg -> arith .
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    ,               reduce using rule 13 (arg -> arith .)
+    ;               reduce using rule 13 (arg -> arith .)
+    +               shift and go to state 31
+    -               shift and go to state 32
+    /               shift and go to state 33
+    *               shift and go to state 34
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 15
+
+    (14) arg -> variavel .
+    (21) arith -> variavel .
+
+  ! reduce/reduce conflict for , resolved using rule 14 (arg -> variavel .)
+  ! reduce/reduce conflict for ; resolved using rule 14 (arg -> variavel .)
+    ,               reduce using rule 14 (arg -> variavel .)
+    ;               reduce using rule 14 (arg -> variavel .)
+    +               reduce using rule 21 (arith -> variavel .)
+    -               reduce using rule 21 (arith -> variavel .)
+    /               reduce using rule 21 (arith -> variavel .)
+    *               reduce using rule 21 (arith -> variavel .)
+    (               reduce using rule 21 (arith -> variavel .)
+    num             reduce using rule 21 (arith -> variavel .)
+    var             reduce using rule 21 (arith -> variavel .)
+
+  ! ,               [ reduce using rule 21 (arith -> variavel .) ]
+  ! ;               [ reduce using rule 21 (arith -> variavel .) ]
+
+
+state 16
+
+    (15) arg -> funcao .
+
+    ,               reduce using rule 15 (arg -> funcao .)
+    ;               reduce using rule 15 (arg -> funcao .)
+
+
+state 17
+
+    (18) arith -> number .
+
+    +               reduce using rule 18 (arith -> number .)
+    -               reduce using rule 18 (arith -> number .)
+    /               reduce using rule 18 (arith -> number .)
+    *               reduce using rule 18 (arith -> number .)
+    (               reduce using rule 18 (arith -> number .)
+    num             reduce using rule 18 (arith -> number .)
+    var             reduce using rule 18 (arith -> number .)
+    ,               reduce using rule 18 (arith -> number .)
+    ;               reduce using rule 18 (arith -> number .)
+    )               reduce using rule 18 (arith -> number .)
+
+
+state 18
+
+    (19) arith -> ( . number )
+    (22) arith -> ( . variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+
+    num             shift and go to state 22
+    var             shift and go to state 19
+    (               shift and go to state 18
+
+    number                         shift and go to state 36
+    variavel                       shift and go to state 37
+    arith                          shift and go to state 38
+
+state 19
+
+    (20) variavel -> var .
+
+    ,               reduce using rule 20 (variavel -> var .)
+    ;               reduce using rule 20 (variavel -> var .)
+    +               reduce using rule 20 (variavel -> var .)
+    -               reduce using rule 20 (variavel -> var .)
+    /               reduce using rule 20 (variavel -> var .)
+    *               reduce using rule 20 (variavel -> var .)
+    (               reduce using rule 20 (variavel -> var .)
+    num             reduce using rule 20 (variavel -> var .)
+    var             reduce using rule 20 (variavel -> var .)
+    )               reduce using rule 20 (variavel -> var .)
+
+
+state 20
+
+    (16) funcao -> ENTRADA . ( )
+
+    (               shift and go to state 39
+
+
+state 21
+
+    (17) funcao -> ALEATORIO . ( arith )
+
+    (               shift and go to state 40
+
+
+state 22
+
+    (32) number -> num .
+
+    +               reduce using rule 32 (number -> num .)
+    -               reduce using rule 32 (number -> num .)
+    /               reduce using rule 32 (number -> num .)
+    *               reduce using rule 32 (number -> num .)
+    (               reduce using rule 32 (number -> num .)
+    num             reduce using rule 32 (number -> num .)
+    var             reduce using rule 32 (number -> num .)
+    ,               reduce using rule 32 (number -> num .)
+    ;               reduce using rule 32 (number -> num .)
+    )               reduce using rule 32 (number -> num .)
+
+
+state 23
+
+    (5) comando -> VAR var_args .
+    (9) var_args -> var_args . , var = arg
+
+    ;               reduce using rule 5 (comando -> VAR var_args .)
+    ,               shift and go to state 41
+
+
+state 24
+
+    (8) var_args -> var . = arg
+
+    =               shift and go to state 42
+
+
+state 25
+
+    (6) comando -> var = . arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    arg                            shift and go to state 43
+    arith                          shift and go to state 14
+    variavel                       shift and go to state 15
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 26
+
+    (23) var_operacoes -> variavel + . = arg
+    (25) var_operacoes -> variavel + . +
+
+    =               shift and go to state 45
+    +               shift and go to state 44
+
+
+state 27
+
+    (24) var_operacoes -> variavel - . = arg
+    (26) var_operacoes -> variavel - . -
+
+    =               shift and go to state 47
+    -               shift and go to state 46
+
+
+state 28
+
+    (2) codigo -> codigo S ; .
+
+    ESCREVER        reduce using rule 2 (codigo -> codigo S ; .)
+    VAR             reduce using rule 2 (codigo -> codigo S ; .)
+    var             reduce using rule 2 (codigo -> codigo S ; .)
+    $end            reduce using rule 2 (codigo -> codigo S ; .)
+
+
+state 29
+
+    (11) args -> args , . arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    arg                            shift and go to state 48
+    arith                          shift and go to state 14
+    variavel                       shift and go to state 15
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 30
+
+    (31) number -> arith arith .
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for num resolved as shift
+  ! shift/reduce conflict for var resolved as shift
+    ,               reduce using rule 31 (number -> arith arith .)
+    ;               reduce using rule 31 (number -> arith arith .)
+    )               reduce using rule 31 (number -> arith arith .)
+    +               shift and go to state 31
+    -               shift and go to state 32
+    /               shift and go to state 33
+    *               shift and go to state 34
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+  ! +               [ reduce using rule 31 (number -> arith arith .) ]
+  ! -               [ reduce using rule 31 (number -> arith arith .) ]
+  ! /               [ reduce using rule 31 (number -> arith arith .) ]
+  ! *               [ reduce using rule 31 (number -> arith arith .) ]
+  ! (               [ reduce using rule 31 (number -> arith arith .) ]
+  ! num             [ reduce using rule 31 (number -> arith arith .) ]
+  ! var             [ reduce using rule 31 (number -> arith arith .) ]
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 31
+
+    (27) number -> arith + . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 49
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 32
+
+    (28) number -> arith - . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 50
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 33
+
+    (29) number -> arith / . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 51
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 34
+
+    (30) number -> arith * . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 52
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 35
+
+    (21) arith -> variavel .
+
+    +               reduce using rule 21 (arith -> variavel .)
+    -               reduce using rule 21 (arith -> variavel .)
+    /               reduce using rule 21 (arith -> variavel .)
+    *               reduce using rule 21 (arith -> variavel .)
+    (               reduce using rule 21 (arith -> variavel .)
+    num             reduce using rule 21 (arith -> variavel .)
+    var             reduce using rule 21 (arith -> variavel .)
+    ,               reduce using rule 21 (arith -> variavel .)
+    ;               reduce using rule 21 (arith -> variavel .)
+    )               reduce using rule 21 (arith -> variavel .)
+
+
+state 36
+
+    (19) arith -> ( number . )
+    (18) arith -> number .
+
+    )               shift and go to state 53
+    +               reduce using rule 18 (arith -> number .)
+    -               reduce using rule 18 (arith -> number .)
+    /               reduce using rule 18 (arith -> number .)
+    *               reduce using rule 18 (arith -> number .)
+    (               reduce using rule 18 (arith -> number .)
+    num             reduce using rule 18 (arith -> number .)
+    var             reduce using rule 18 (arith -> number .)
+
+
+state 37
+
+    (22) arith -> ( variavel . )
+    (21) arith -> variavel .
+
+    )               shift and go to state 54
+    +               reduce using rule 21 (arith -> variavel .)
+    -               reduce using rule 21 (arith -> variavel .)
+    /               reduce using rule 21 (arith -> variavel .)
+    *               reduce using rule 21 (arith -> variavel .)
+    (               reduce using rule 21 (arith -> variavel .)
+    num             reduce using rule 21 (arith -> variavel .)
+    var             reduce using rule 21 (arith -> variavel .)
+
+
+state 38
+
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    +               shift and go to state 31
+    -               shift and go to state 32
+    /               shift and go to state 33
+    *               shift and go to state 34
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 39
+
+    (16) funcao -> ENTRADA ( . )
+
+    )               shift and go to state 55
+
+
+state 40
+
+    (17) funcao -> ALEATORIO ( . arith )
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 56
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 41
+
+    (9) var_args -> var_args , . var = arg
+
+    var             shift and go to state 57
+
+
+state 42
+
+    (8) var_args -> var = . arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    arg                            shift and go to state 58
+    arith                          shift and go to state 14
+    variavel                       shift and go to state 15
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 43
+
+    (6) comando -> var = arg .
+
+    ;               reduce using rule 6 (comando -> var = arg .)
+
+
+state 44
+
+    (25) var_operacoes -> variavel + + .
+
+    ;               reduce using rule 25 (var_operacoes -> variavel + + .)
+
+
+state 45
+
+    (23) var_operacoes -> variavel + = . arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    variavel                       shift and go to state 15
+    arg                            shift and go to state 59
+    arith                          shift and go to state 14
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 46
+
+    (26) var_operacoes -> variavel - - .
+
+    ;               reduce using rule 26 (var_operacoes -> variavel - - .)
+
+
+state 47
+
+    (24) var_operacoes -> variavel - = . arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    variavel                       shift and go to state 15
+    arg                            shift and go to state 60
+    arith                          shift and go to state 14
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 48
+
+    (11) args -> args , arg .
+
+    ,               reduce using rule 11 (args -> args , arg .)
+    ;               reduce using rule 11 (args -> args , arg .)
+
+
+state 49
+
+    (27) number -> arith + arith .
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    +               reduce using rule 27 (number -> arith + arith .)
+    -               reduce using rule 27 (number -> arith + arith .)
+    num             reduce using rule 27 (number -> arith + arith .)
+    var             reduce using rule 27 (number -> arith + arith .)
+    ,               reduce using rule 27 (number -> arith + arith .)
+    ;               reduce using rule 27 (number -> arith + arith .)
+    )               reduce using rule 27 (number -> arith + arith .)
+    /               shift and go to state 33
+    *               shift and go to state 34
+    (               shift and go to state 18
+
+  ! /               [ reduce using rule 27 (number -> arith + arith .) ]
+  ! *               [ reduce using rule 27 (number -> arith + arith .) ]
+  ! (               [ reduce using rule 27 (number -> arith + arith .) ]
+  ! +               [ shift and go to state 31 ]
+  ! -               [ shift and go to state 32 ]
+  ! num             [ shift and go to state 22 ]
+  ! var             [ shift and go to state 19 ]
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 50
+
+    (28) number -> arith - arith .
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    +               reduce using rule 28 (number -> arith - arith .)
+    -               reduce using rule 28 (number -> arith - arith .)
+    num             reduce using rule 28 (number -> arith - arith .)
+    var             reduce using rule 28 (number -> arith - arith .)
+    ,               reduce using rule 28 (number -> arith - arith .)
+    ;               reduce using rule 28 (number -> arith - arith .)
+    )               reduce using rule 28 (number -> arith - arith .)
+    /               shift and go to state 33
+    *               shift and go to state 34
+    (               shift and go to state 18
+
+  ! /               [ reduce using rule 28 (number -> arith - arith .) ]
+  ! *               [ reduce using rule 28 (number -> arith - arith .) ]
+  ! (               [ reduce using rule 28 (number -> arith - arith .) ]
+  ! +               [ shift and go to state 31 ]
+  ! -               [ shift and go to state 32 ]
+  ! num             [ shift and go to state 22 ]
+  ! var             [ shift and go to state 19 ]
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 51
+
+    (29) number -> arith / arith .
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    +               reduce using rule 29 (number -> arith / arith .)
+    -               reduce using rule 29 (number -> arith / arith .)
+    /               reduce using rule 29 (number -> arith / arith .)
+    *               reduce using rule 29 (number -> arith / arith .)
+    num             reduce using rule 29 (number -> arith / arith .)
+    var             reduce using rule 29 (number -> arith / arith .)
+    ,               reduce using rule 29 (number -> arith / arith .)
+    ;               reduce using rule 29 (number -> arith / arith .)
+    )               reduce using rule 29 (number -> arith / arith .)
+    (               shift and go to state 18
+
+  ! (               [ reduce using rule 29 (number -> arith / arith .) ]
+  ! +               [ shift and go to state 31 ]
+  ! -               [ shift and go to state 32 ]
+  ! /               [ shift and go to state 33 ]
+  ! *               [ shift and go to state 34 ]
+  ! num             [ shift and go to state 22 ]
+  ! var             [ shift and go to state 19 ]
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 52
+
+    (30) number -> arith * arith .
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    +               reduce using rule 30 (number -> arith * arith .)
+    -               reduce using rule 30 (number -> arith * arith .)
+    /               reduce using rule 30 (number -> arith * arith .)
+    *               reduce using rule 30 (number -> arith * arith .)
+    num             reduce using rule 30 (number -> arith * arith .)
+    var             reduce using rule 30 (number -> arith * arith .)
+    ,               reduce using rule 30 (number -> arith * arith .)
+    ;               reduce using rule 30 (number -> arith * arith .)
+    )               reduce using rule 30 (number -> arith * arith .)
+    (               shift and go to state 18
+
+  ! (               [ reduce using rule 30 (number -> arith * arith .) ]
+  ! +               [ shift and go to state 31 ]
+  ! -               [ shift and go to state 32 ]
+  ! /               [ shift and go to state 33 ]
+  ! *               [ shift and go to state 34 ]
+  ! num             [ shift and go to state 22 ]
+  ! var             [ shift and go to state 19 ]
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 53
+
+    (19) arith -> ( number ) .
+
+    +               reduce using rule 19 (arith -> ( number ) .)
+    -               reduce using rule 19 (arith -> ( number ) .)
+    /               reduce using rule 19 (arith -> ( number ) .)
+    *               reduce using rule 19 (arith -> ( number ) .)
+    (               reduce using rule 19 (arith -> ( number ) .)
+    num             reduce using rule 19 (arith -> ( number ) .)
+    var             reduce using rule 19 (arith -> ( number ) .)
+    ,               reduce using rule 19 (arith -> ( number ) .)
+    ;               reduce using rule 19 (arith -> ( number ) .)
+    )               reduce using rule 19 (arith -> ( number ) .)
+
+
+state 54
+
+    (22) arith -> ( variavel ) .
+
+    +               reduce using rule 22 (arith -> ( variavel ) .)
+    -               reduce using rule 22 (arith -> ( variavel ) .)
+    /               reduce using rule 22 (arith -> ( variavel ) .)
+    *               reduce using rule 22 (arith -> ( variavel ) .)
+    (               reduce using rule 22 (arith -> ( variavel ) .)
+    num             reduce using rule 22 (arith -> ( variavel ) .)
+    var             reduce using rule 22 (arith -> ( variavel ) .)
+    ,               reduce using rule 22 (arith -> ( variavel ) .)
+    ;               reduce using rule 22 (arith -> ( variavel ) .)
+    )               reduce using rule 22 (arith -> ( variavel ) .)
+
+
+state 55
+
+    (16) funcao -> ENTRADA ( ) .
+
+    ,               reduce using rule 16 (funcao -> ENTRADA ( ) .)
+    ;               reduce using rule 16 (funcao -> ENTRADA ( ) .)
+
+
+state 56
+
+    (17) funcao -> ALEATORIO ( arith . )
+    (27) number -> arith . + arith
+    (28) number -> arith . - arith
+    (29) number -> arith . / arith
+    (30) number -> arith . * arith
+    (31) number -> arith . arith
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+    (20) variavel -> . var
+
+    )               shift and go to state 61
+    +               shift and go to state 31
+    -               shift and go to state 32
+    /               shift and go to state 33
+    *               shift and go to state 34
+    (               shift and go to state 18
+    num             shift and go to state 22
+    var             shift and go to state 19
+
+    arith                          shift and go to state 30
+    number                         shift and go to state 17
+    variavel                       shift and go to state 35
+
+state 57
+
+    (9) var_args -> var_args , var . = arg
+
+    =               shift and go to state 62
+
+
+state 58
+
+    (8) var_args -> var = arg .
+
+    ,               reduce using rule 8 (var_args -> var = arg .)
+    ;               reduce using rule 8 (var_args -> var = arg .)
+
+
+state 59
+
+    (23) var_operacoes -> variavel + = arg .
+
+    ;               reduce using rule 23 (var_operacoes -> variavel + = arg .)
+
+
+state 60
+
+    (24) var_operacoes -> variavel - = arg .
+
+    ;               reduce using rule 24 (var_operacoes -> variavel - = arg .)
+
+
+state 61
+
+    (17) funcao -> ALEATORIO ( arith ) .
+
+    ,               reduce using rule 17 (funcao -> ALEATORIO ( arith ) .)
+    ;               reduce using rule 17 (funcao -> ALEATORIO ( arith ) .)
+
+
+state 62
+
+    (9) var_args -> var_args , var = . arg
+    (12) arg -> . str
+    (13) arg -> . arith
+    (14) arg -> . variavel
+    (15) arg -> . funcao
+    (18) arith -> . number
+    (19) arith -> . ( number )
+    (21) arith -> . variavel
+    (22) arith -> . ( variavel )
+    (20) variavel -> . var
+    (16) funcao -> . ENTRADA ( )
+    (17) funcao -> . ALEATORIO ( arith )
+    (27) number -> . arith + arith
+    (28) number -> . arith - arith
+    (29) number -> . arith / arith
+    (30) number -> . arith * arith
+    (31) number -> . arith arith
+    (32) number -> . num
+
+    str             shift and go to state 13
+    (               shift and go to state 18
+    var             shift and go to state 19
+    ENTRADA         shift and go to state 20
+    ALEATORIO       shift and go to state 21
+    num             shift and go to state 22
+
+    arg                            shift and go to state 63
+    arith                          shift and go to state 14
+    variavel                       shift and go to state 15
+    funcao                         shift and go to state 16
+    number                         shift and go to state 17
+
+state 63
+
+    (9) var_args -> var_args , var = arg .
+
+    ,               reduce using rule 9 (var_args -> var_args , var = arg .)
+    ;               reduce using rule 9 (var_args -> var_args , var = arg .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for + in state 30 resolved as shift
+WARNING: shift/reduce conflict for - in state 30 resolved as shift
+WARNING: shift/reduce conflict for / in state 30 resolved as shift
+WARNING: shift/reduce conflict for * in state 30 resolved as shift
+WARNING: shift/reduce conflict for ( in state 30 resolved as shift
+WARNING: shift/reduce conflict for num in state 30 resolved as shift
+WARNING: shift/reduce conflict for var in state 30 resolved as shift
+WARNING: reduce/reduce conflict in state 15 resolved using rule (arg -> variavel)
+WARNING: rejected rule (arith -> variavel) in state 15
