@@ -1,0 +1,3 @@
+ESCREVER "ol´a mundo!";
+ESCREVER "PL ", 2 ,"o ano de ", "ESI";
+ESCREVER "soma de ", 9, " com ", 3*4 , " = ", 9+2*3 ;
