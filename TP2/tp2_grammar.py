@@ -27,7 +27,6 @@ class Tp2Grammar:
     def p_codigo0(self, p):
         """ codigo : S ';' """
         p[0] = [p[1]]
-        print(f"P0- {p[0]}")
 
     def p_codigo1(self, p):
         """ codigo : codigo S ';' """
@@ -41,7 +40,6 @@ class Tp2Grammar:
     def p_comando0(self, p):
         """ comando : ESCREVER args """
         p[0] = {'op': 'esc', 'args': p[2]}
-        print(p[0])
 
     def p_comando1(self, p):
         """ comando : VAR var_args"""
@@ -54,6 +52,40 @@ class Tp2Grammar:
             p[0] = {'op': 'atr', 'args': [(p[1], p[3])]}
         else:
             p[0] = p[1]
+
+    def p_comando3(self, p):
+        """ comando : PARA var EM '[' arg '.' '.' arg ']' FAZER '<' codigo '>' FIM PARA
+                    | PARA var EM '[' arg '.' '.' arg ',' arg ']' FAZER '<' codigo '>' FIM PARA"""
+        if len(p) > 16:
+            p[0] = {'ciclo': 'para', 'counter': p[2], 'interval': [p[5], p[8]], 'codigo': p[14], 'increment': p[10]}
+        else:
+            p[0] = {'ciclo': 'para', 'counter': p[2], 'interval': [p[5], p[8]], 'codigo': p[12], 'increment': 1}
+
+    def p_comando4(self, p):
+        """ comando : FUN var '(' ')' '{' codigo '}'
+                    |  FUN var '(' var_list ')' '{' codigo '}' """
+        if len(p) > 8:
+            p[0] = {'func': p[2], 'args': p[4], 'codigo': p[7]}
+        else:
+            p[0] = {'func': p[2], 'args': [], 'codigo': p[6]}
+
+    def p_comando5(self, p):
+        """ comando : INVOCAR var '(' ')'
+                    | INVOCAR var '(' args ')' """
+
+        if len(p) > 5:
+            p[0] = {'op': 'invk', 'args': [p[2], p[4]]}
+        else:
+            p[0] = {'op': 'invk', 'args': [p[2], []]}
+
+    def p_var_list(self, p):
+        """ var_list : var
+                    | var_list ',' var """
+        if len(p) > 2:
+            p[0] = p[1]
+            p[0].append(p[3])
+        else:
+            p[0] = [p[1]]
 
     def p_var_args(self, p):
         """ var_args : var '=' arg
@@ -86,7 +118,7 @@ class Tp2Grammar:
         """ arg : str
                 | arith
                 | variavel
-                | funcao """
+                | funcao"""
         if len(p) > 2:
             p[0] = p[2]
         else:
@@ -130,7 +162,7 @@ class Tp2Grammar:
             p[0] = {'op': p[2] + p[3], 'args': [(p[1], p[4])]}
         else:
             p[0] = {'op': p[2] + p[3], 'args': [(p[1],)]}
-        print(f"VAR: {p[0]}")
+
 
     def p_arith_list(self, p):
         """ number : arith '+' arith

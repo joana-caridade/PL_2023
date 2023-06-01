@@ -2,16 +2,43 @@ import ply.lex as plex
 
 
 class Tp2Lexer:
-    tokens = ("ESCREVER", "VAR", "num", "str", "var","ENTRADA", "ALEATORIO")
-    literals = [",", ";", "\"", "=", "+", "-", "*", "/", '(', ')']
+    tokens = ("ESCREVER", "VAR", "PARA", "FIM", "FAZER", "EM", "FUN","INVOCAR", "COMMENT", "num", "str", "var", "ENTRADA", "ALEATORIO")
+    literals = [",", ";", "\"", "=", "+", "-", "*", "/", '(', ')', '[', ']', '.', '<', '>', '{', '}']
     t_ignore = " \n"
 
     def t_ESCREVER(self, t):
-        r"(E|e)(S|s)(C|c)((R|r)(E|e)(V|v)(E|e)(R|r))?"
+        r"((E|e)(S|s)(C|c)((R|r)(E|e)(V|v)(E|e)(R|r))?)\s"
+        return t
+
+    def t_COMMENT(self, t):
+        r"(\/\*[^\*]*\*\/)|(\/\/[^(\r\n|\r|\n)]+)"
+        pass
+
+    def t_PARA(self, t):
+        r"(PARA|para)\s"
+        return t
+
+    def t_FUN(self, t):
+        r"(FUN|fun)\s"
+        return t
+
+    def t_FIM(self, t):
+        r"(FIM|fim)\s"
+        return t
+
+    def t_EM(self, t):
+        r"(EM|em)\s"
+        return t
+
+    def t_INVOCAR(self, t):
+        r"(INV|inv)((k|K)|(ocar|OCAR))"
+        return t
+    def t_FAZER(self, t):
+        r"(FAZER|fazer)\s"
         return t
 
     def t_VAR(self, t):
-        r"(V|v)(A|a)(R|r)"
+        r"((V|v)(A|a)(R|r))\s"
         return t
 
     def t_num(self, t):
@@ -20,11 +47,11 @@ class Tp2Lexer:
         return t
 
     def t_ALEATORIO(self, t):
-        r"ALEATORIO"
+        r"ALEATORIO|aleatorio"
         return t
 
     def t_ENTRADA(self, t):
-        r"ENTRADA"
+        r"ENTRADA|entrada"
         return t
 
     def t_str(self, t):

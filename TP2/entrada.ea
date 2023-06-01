@@ -1,13 +1,22 @@
+/* teste
+
+askjdakjsdhakjshdkjahsdkjh
+*/
+// askjdhakjsdhkajshdkajshdkajhsd
 ESCREVER "olá mundo!";
 ESCREVER "PL ", 2 ,"o ano de", "ESI";
 ESCREVER "soma de ", 9, "com ", 3*4 , "=", 9+2*3 ;
-vAR ano = 2023, mes="maio";
+VAR ano = 2023, mes="maio" ;
+ESCREVER "ano: ", ano, "mes: ", mes;
 tmp = 7+3 ;
 a = 10 (30 + tmp ) ;
 a ++; a += 10; b = tmp * (a + 10);
-ESCREVER "TMP: ", tmp, " A: ", a, " B: ", b, " ano: ", ano, " mes: ", mes;
-
-var teste = ALEATORIO(10);
-ESCREVER "Teste: ", teste;
-var teste = ENTRADA();
-ESCREVER "Teste: ", teste;
+ESCREVER "tmp: ", tmp, "a: ", a, "b", b;
+_val_or = ENTRADA();
+ate10 = ALEATORIO(10);
+ESCREVER "_val_or: ", _val_or, "ate10: ", ate10;
+PARA i EM [10..20] FAZER < ESCREVER "i: ", i; > FIM PARA ;
+fun testFunc (teste){
+    ESCREVER "TESTe: ", teste;
+};
+invk testFunc(10);

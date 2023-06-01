@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = "left+-left*/left()ALEATORIO ENTRADA ESCREVER VAR num str var codigo : S ';'  codigo : codigo S ';'  S : comando  comando : ESCREVER args  comando : VAR var_args comando : var '=' arg\n                    | var_operacoes  var_args : var '=' arg\n                    | var_args ',' var '=' arg  args : arg\n                 | args ',' arg   arg : str\n                | arith\n                | variavel\n                | funcao  funcao : ENTRADA '(' ')'\n                    | ALEATORIO '(' arith ')'  arith : number\n                | '(' number ')'  variavel : var arith : variavel\n                | '(' variavel ')'  var_operacoes : variavel '+' '=' arg\n                | variavel '-' '=' arg\n                | variavel '+' '+'\n                | variavel '-' '-'  number : arith '+' arith\n                | arith '-' arith\n                | arith '/' arith\n                | arith '*' arith\n                | arith arith  number : num "
+_lr_signature = "left+-left*/left()ALEATORIO COMMENT EM ENTRADA ESCREVER FAZER FIM FUN INVOCAR PARA VAR num str var codigo : S ';'  codigo : codigo S ';'  S : comando  comando : ESCREVER args  comando : VAR var_args comando : var '=' arg\n                    | var_operacoes  comando : PARA var EM '[' arg '.' '.' arg ']' FAZER '<' codigo '>' FIM PARA\n                    | PARA var EM '[' arg '.' '.' arg ',' arg ']' FAZER '<' codigo '>' FIM PARA comando : FUN var '(' ')' '{' codigo '}'\n                    |  FUN var '(' var_list ')' '{' codigo '}' comando : INVOCAR var '(' ')'\n                    | INVOCAR var '(' args ')'  var_list : var\n                    | var_list ',' var  var_args : var '=' arg\n                    | var_args ',' var '=' arg  args : arg\n                 | args ',' arg   arg : str\n                | arith\n                | variavel\n                | funcao  funcao : ENTRADA '(' ')'\n                    | ALEATORIO '(' arith ')'  arith : number\n                | '(' number ')'  variavel : var arith : variavel\n                | '(' variavel ')'  var_operacoes : variavel '+' '=' arg\n                | variavel '-' '=' arg\n                | variavel '+' '+'\n                | variavel '-' '-'  number : arith '+' arith\n                | arith '-' arith\n                | arith '/' arith\n                | arith '*' arith\n                | arith arith  number : num "
     
-_lr_action_items = {'ESCREVER':([0,1,10,28,],[4,4,-1,-2,]),'VAR':([0,1,10,28,],[5,5,-1,-2,]),'var':([0,1,4,5,10,14,15,17,18,19,22,25,28,29,30,31,32,33,34,35,36,37,38,40,41,42,45,47,49,50,51,52,53,54,56,62,],[6,6,19,24,-1,19,-21,-18,19,-20,-32,19,-2,19,19,19,19,19,19,-21,-18,-21,19,19,57,19,19,19,-27,-28,-29,-30,-19,-22,19,19,]),'$end':([1,10,28,],[0,-1,-2,]),';':([2,3,7,9,11,12,13,14,15,16,17,19,22,23,30,35,43,44,46,48,49,50,51,52,53,54,55,58,59,60,61,63,],[10,-3,-7,28,-4,-10,-12,-13,-14,-15,-18,-20,-32,-5,-31,-21,-6,-25,-26,-11,-27,-28,-29,-30,-19,-22,-16,-8,-23,-24,-17,-9,]),'str':([4,25,29,42,45,47,62,],[13,13,13,13,13,13,13,]),'(':([4,14,15,17,18,19,20,21,22,25,29,30,31,32,33,34,35,36,37,38,40,42,45,47,49,50,51,52,53,54,56,62,],[18,18,-21,-18,18,-20,39,40,-32,18,18,18,18,18,18,18,-21,-18,-21,18,18,18,18,18,18,18,18,18,-19,-22,18,18,]),'ENTRADA':([4,25,29,42,45,47,62,],[20,20,20,20,20,20,20,]),'ALEATORIO':([4,25,29,42,45,47,62,],[21,21,21,21,21,21,21,]),'num':([4,14,15,17,18,19,22,25,29,30,31,32,33,34,35,36,37,38,40,42,45,47,49,50,51,52,53,54,56,62,],[22,22,-21,-18,22,-20,-32,22,22,22,22,22,22,22,-21,-18,-21,22,22,22,22,22,-27,-28,-29,-30,-19,-22,22,22,]),'=':([6,24,26,27,57,],[25,42,45,47,62,]),'+':([6,8,14,15,17,19,22,26,30,35,36,37,38,49,50,51,52,53,54,56,],[-20,26,31,-21,-18,-20,-32,44,31,-21,-18,-21,31,-27,-28,-29,-30,-19,-22,31,]),'-':([6,8,14,15,17,19,22,27,30,35,36,37,38,49,50,51,52,53,54,56,],[-20,27,32,-21,-18,-20,-32,46,32,-21,-18,-21,32,-27,-28,-29,-30,-19,-22,32,]),',':([11,12,13,14,15,16,17,19,22,23,30,35,48,49,50,51,52,53,54,55,58,61,63,],[29,-10,-12,-13,-14,-15,-18,-20,-32,41,-31,-21,-11,-27,-28,-29,-30,-19,-22,-16,-8,-17,-9,]),'/':([14,15,17,19,22,30,35,36,37,38,49,50,51,52,53,54,56,],[33,-21,-18,-20,-32,33,-21,-18,-21,33,33,33,-29,-30,-19,-22,33,]),'*':([14,15,17,19,22,30,35,36,37,38,49,50,51,52,53,54,56,],[34,-21,-18,-20,-32,34,-21,-18,-21,34,34,34,-29,-30,-19,-22,34,]),')':([17,19,22,30,35,36,37,39,49,50,51,52,53,54,56,],[-18,-20,-32,-31,-21,53,54,55,-27,-28,-29,-30,-19,-22,61,]),}
+_lr_action_items = {'ESCREVER':([0,1,13,34,79,85,86,90,97,99,102,104,],[4,4,-1,-2,4,4,4,4,4,4,4,4,]),'VAR':([0,1,13,34,79,85,86,90,97,99,102,104,],[5,5,-1,-2,5,5,5,5,5,5,5,5,]),'var':([0,1,4,5,8,9,10,13,17,18,20,21,22,25,28,34,35,36,37,38,39,40,41,42,43,44,46,47,48,51,52,54,56,58,59,60,61,62,63,65,68,77,79,81,85,86,88,90,94,97,99,102,104,],[6,6,22,27,29,30,31,-1,22,-29,-26,22,-28,-40,22,-2,22,22,22,22,22,22,-29,-26,-29,22,22,66,22,69,22,22,22,-35,-36,-37,-38,-27,-30,22,22,22,6,87,6,6,22,6,22,6,6,6,6,]),'PARA':([0,1,13,34,79,85,86,90,97,99,102,103,104,107,],[8,8,-1,-2,8,8,8,8,8,8,8,105,8,108,]),'FUN':([0,1,13,34,79,85,86,90,97,99,102,104,],[9,9,-1,-2,9,9,9,9,9,9,9,9,]),'INVOCAR':([0,1,13,34,79,85,86,90,97,99,102,104,],[10,10,-1,-2,10,10,10,10,10,10,10,10,]),'$end':([1,13,34,],[0,-1,-2,]),';':([2,3,7,12,14,15,16,17,18,19,20,22,25,26,36,41,49,53,55,57,58,59,60,61,62,63,64,67,72,74,75,76,82,83,89,92,105,108,],[13,-3,-7,34,-4,-18,-20,-21,-22,-23,-26,-28,-40,-5,-39,-29,-6,-33,-34,-19,-35,-36,-37,-38,-27,-30,-24,-16,-12,-31,-32,-25,-13,-17,-10,-11,-8,-9,]),'str':([4,28,35,48,52,54,56,68,77,88,94,],[16,16,16,16,16,16,16,16,16,16,16,]),'(':([4,17,18,20,21,22,23,24,25,28,30,31,35,36,37,38,39,40,41,42,43,44,46,48,52,54,56,58,59,60,61,62,63,65,68,77,88,94,],[21,21,-29,-26,21,-28,45,46,-40,21,51,52,21,21,21,21,21,21,-29,-26,-29,21,21,21,21,21,21,21,21,21,21,-27,-30,21,21,21,21,21,]),'ENTRADA':([4,28,35,48,52,54,56,68,77,88,94,],[23,23,23,23,23,23,23,23,23,23,23,]),'ALEATORIO':([4,28,35,48,52,54,56,68,77,88,94,],[24,24,24,24,24,24,24,24,24,24,24,]),'num':([4,17,18,20,21,22,25,28,35,36,37,38,39,40,41,42,43,44,46,48,52,54,56,58,59,60,61,62,63,65,68,77,88,94,],[25,25,-29,-26,25,-28,-40,25,25,25,25,25,25,25,-29,-26,-29,25,25,25,25,25,25,-35,-36,-37,-38,-27,-30,25,25,25,25,25,]),'=':([6,27,32,33,66,],[28,48,54,56,77,]),'+':([6,11,17,18,20,22,25,32,36,41,42,43,44,58,59,60,61,62,63,65,],[-28,32,37,-29,-26,-28,-40,53,37,-29,-26,-29,37,-35,-36,-37,-38,-27,-30,37,]),'-':([6,11,17,18,20,22,25,33,36,41,42,43,44,58,59,60,61,62,63,65,],[-28,33,38,-29,-26,-28,-40,55,38,-29,-26,-29,38,-35,-36,-37,-38,-27,-30,38,]),'}':([13,34,85,90,],[-1,-2,89,92,]),'>':([13,34,99,104,],[-1,-2,101,106,]),',':([14,15,16,17,18,19,20,22,25,26,36,41,57,58,59,60,61,62,63,64,67,69,71,73,76,83,87,91,],[35,-18,-20,-21,-22,-23,-26,-28,-40,47,-39,-29,-19,-35,-36,-37,-38,-27,-30,-24,-16,-14,81,35,-25,-17,-15,94,]),')':([15,16,17,18,19,20,22,25,36,41,42,43,45,51,52,57,58,59,60,61,62,63,64,65,69,71,73,76,87,],[-18,-20,-21,-22,-23,-26,-28,-40,-39,-29,62,63,64,70,72,-19,-35,-36,-37,-38,-27,-30,-24,76,-14,80,82,-25,-15,]),'.':([16,17,18,19,20,22,25,36,41,58,59,60,61,62,63,64,76,78,84,],[-20,-21,-22,-23,-26,-28,-40,-39,-29,-35,-36,-37,-38,-27,-30,-24,-25,84,88,]),']':([16,17,18,19,20,22,25,36,41,58,59,60,61,62,63,64,76,91,96,],[-20,-21,-22,-23,-26,-28,-40,-39,-29,-35,-36,-37,-38,-27,-30,-24,-25,93,98,]),'/':([17,18,20,22,25,36,41,42,43,44,58,59,60,61,62,63,65,],[39,-29,-26,-28,-40,39,-29,-26,-29,39,39,39,-37,-38,-27,-30,39,]),'*':([17,18,20,22,25,36,41,42,43,44,58,59,60,61,62,63,65,],[40,-29,-26,-28,-40,40,-29,-26,-29,40,40,40,-37,-38,-27,-30,40,]),'EM':([29,],[50,]),'[':([50,],[68,]),'{':([70,80,],[79,86,]),'FAZER':([93,98,],[95,100,]),'<':([95,100,],[97,102,]),'FIM':([101,106,],[103,107,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'codigo':([0,],[1,]),'S':([0,1,],[2,9,]),'comando':([0,1,],[3,3,]),'var_operacoes':([0,1,],[7,7,]),'variavel':([0,1,4,14,18,25,29,30,31,32,33,34,38,40,42,45,47,49,50,51,52,56,62,],[8,8,15,35,37,15,15,35,35,35,35,35,35,35,15,15,15,35,35,35,35,35,15,]),'args':([4,],[11,]),'arg':([4,25,29,42,45,47,62,],[12,43,48,58,59,60,63,]),'arith':([4,14,18,25,29,30,31,32,33,34,38,40,42,45,47,49,50,51,52,56,62,],[14,30,38,14,14,30,49,50,51,52,30,56,14,14,14,30,30,30,30,30,14,]),'funcao':([4,25,29,42,45,47,62,],[16,16,16,16,16,16,16,]),'number':([4,14,18,25,29,30,31,32,33,34,38,40,42,45,47,49,50,51,52,56,62,],[17,17,36,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,]),'var_args':([5,],[23,]),}
+_lr_goto_items = {'codigo':([0,79,86,97,102,],[1,85,90,99,104,]),'S':([0,1,79,85,86,90,97,99,102,104,],[2,12,2,12,2,12,2,12,2,12,]),'comando':([0,1,79,85,86,90,97,99,102,104,],[3,3,3,3,3,3,3,3,3,3,]),'var_operacoes':([0,1,79,85,86,90,97,99,102,104,],[7,7,7,7,7,7,7,7,7,7,]),'variavel':([0,1,4,17,21,28,35,36,37,38,39,40,44,46,48,52,54,56,58,59,60,61,65,68,77,79,85,86,88,90,94,97,99,102,104,],[11,11,18,41,43,18,18,41,41,41,41,41,41,41,18,18,18,18,41,41,41,41,41,18,18,11,11,11,18,11,18,11,11,11,11,]),'args':([4,52,],[14,73,]),'arg':([4,28,35,48,52,54,56,68,77,88,94,],[15,49,57,67,15,74,75,78,83,91,96,]),'arith':([4,17,21,28,35,36,37,38,39,40,44,46,48,52,54,56,58,59,60,61,65,68,77,88,94,],[17,36,44,17,17,36,58,59,60,61,36,65,17,17,17,17,36,36,36,36,36,17,17,17,17,]),'funcao':([4,28,35,48,52,54,56,68,77,88,94,],[19,19,19,19,19,19,19,19,19,19,19,]),'number':([4,17,21,28,35,36,37,38,39,40,44,46,48,52,54,56,58,59,60,61,65,68,77,88,94,],[20,20,42,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,]),'var_args':([5,],[26,]),'var_list':([51,],[71,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,35 +28,43 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> codigo","S'",1,None,None,None),
   ('codigo -> S ;','codigo',2,'p_codigo0','tp2_grammar.py',28),
-  ('codigo -> codigo S ;','codigo',3,'p_codigo1','tp2_grammar.py',33),
-  ('S -> comando','S',1,'p_s','tp2_grammar.py',38),
-  ('comando -> ESCREVER args','comando',2,'p_comando0','tp2_grammar.py',42),
-  ('comando -> VAR var_args','comando',2,'p_comando1','tp2_grammar.py',47),
-  ('comando -> var = arg','comando',3,'p_comando2','tp2_grammar.py',51),
-  ('comando -> var_operacoes','comando',1,'p_comando2','tp2_grammar.py',52),
-  ('var_args -> var = arg','var_args',3,'p_var_args','tp2_grammar.py',59),
-  ('var_args -> var_args , var = arg','var_args',5,'p_var_args','tp2_grammar.py',60),
-  ('args -> arg','args',1,'p_lista_args','tp2_grammar.py',68),
-  ('args -> args , arg','args',3,'p_lista_args','tp2_grammar.py',69),
-  ('arg -> str','arg',1,'p_arg','tp2_grammar.py',86),
-  ('arg -> arith','arg',1,'p_arg','tp2_grammar.py',87),
-  ('arg -> variavel','arg',1,'p_arg','tp2_grammar.py',88),
-  ('arg -> funcao','arg',1,'p_arg','tp2_grammar.py',89),
-  ('funcao -> ENTRADA ( )','funcao',3,'p_funcao','tp2_grammar.py',96),
-  ('funcao -> ALEATORIO ( arith )','funcao',4,'p_funcao','tp2_grammar.py',97),
-  ('arith -> number','arith',1,'p_arith','tp2_grammar.py',104),
-  ('arith -> ( number )','arith',3,'p_arith','tp2_grammar.py',105),
-  ('variavel -> var','variavel',1,'p_variavel','tp2_grammar.py',112),
-  ('arith -> variavel','arith',1,'p_var','tp2_grammar.py',116),
-  ('arith -> ( variavel )','arith',3,'p_var','tp2_grammar.py',117),
-  ('var_operacoes -> variavel + = arg','var_operacoes',4,'p_var_operacoes','tp2_grammar.py',124),
-  ('var_operacoes -> variavel - = arg','var_operacoes',4,'p_var_operacoes','tp2_grammar.py',125),
-  ('var_operacoes -> variavel + +','var_operacoes',3,'p_var_operacoes','tp2_grammar.py',126),
-  ('var_operacoes -> variavel - -','var_operacoes',3,'p_var_operacoes','tp2_grammar.py',127),
-  ('number -> arith + arith','number',3,'p_arith_list','tp2_grammar.py',136),
-  ('number -> arith - arith','number',3,'p_arith_list','tp2_grammar.py',137),
-  ('number -> arith / arith','number',3,'p_arith_list','tp2_grammar.py',138),
-  ('number -> arith * arith','number',3,'p_arith_list','tp2_grammar.py',139),
-  ('number -> arith arith','number',2,'p_arith_list','tp2_grammar.py',140),
-  ('number -> num','number',1,'p_number','tp2_grammar.py',150),
+  ('codigo -> codigo S ;','codigo',3,'p_codigo1','tp2_grammar.py',32),
+  ('S -> comando','S',1,'p_s','tp2_grammar.py',37),
+  ('comando -> ESCREVER args','comando',2,'p_comando0','tp2_grammar.py',41),
+  ('comando -> VAR var_args','comando',2,'p_comando1','tp2_grammar.py',45),
+  ('comando -> var = arg','comando',3,'p_comando2','tp2_grammar.py',49),
+  ('comando -> var_operacoes','comando',1,'p_comando2','tp2_grammar.py',50),
+  ('comando -> PARA var EM [ arg . . arg ] FAZER < codigo > FIM PARA','comando',15,'p_comando3','tp2_grammar.py',57),
+  ('comando -> PARA var EM [ arg . . arg , arg ] FAZER < codigo > FIM PARA','comando',17,'p_comando3','tp2_grammar.py',58),
+  ('comando -> FUN var ( ) { codigo }','comando',7,'p_comando4','tp2_grammar.py',65),
+  ('comando -> FUN var ( var_list ) { codigo }','comando',8,'p_comando4','tp2_grammar.py',66),
+  ('comando -> INVOCAR var ( )','comando',4,'p_comando5','tp2_grammar.py',73),
+  ('comando -> INVOCAR var ( args )','comando',5,'p_comando5','tp2_grammar.py',74),
+  ('var_list -> var','var_list',1,'p_var_list','tp2_grammar.py',81),
+  ('var_list -> var_list , var','var_list',3,'p_var_list','tp2_grammar.py',82),
+  ('var_args -> var = arg','var_args',3,'p_var_args','tp2_grammar.py',90),
+  ('var_args -> var_args , var = arg','var_args',5,'p_var_args','tp2_grammar.py',91),
+  ('args -> arg','args',1,'p_lista_args','tp2_grammar.py',99),
+  ('args -> args , arg','args',3,'p_lista_args','tp2_grammar.py',100),
+  ('arg -> str','arg',1,'p_arg','tp2_grammar.py',117),
+  ('arg -> arith','arg',1,'p_arg','tp2_grammar.py',118),
+  ('arg -> variavel','arg',1,'p_arg','tp2_grammar.py',119),
+  ('arg -> funcao','arg',1,'p_arg','tp2_grammar.py',120),
+  ('funcao -> ENTRADA ( )','funcao',3,'p_funcao','tp2_grammar.py',127),
+  ('funcao -> ALEATORIO ( arith )','funcao',4,'p_funcao','tp2_grammar.py',128),
+  ('arith -> number','arith',1,'p_arith','tp2_grammar.py',135),
+  ('arith -> ( number )','arith',3,'p_arith','tp2_grammar.py',136),
+  ('variavel -> var','variavel',1,'p_variavel','tp2_grammar.py',143),
+  ('arith -> variavel','arith',1,'p_var','tp2_grammar.py',147),
+  ('arith -> ( variavel )','arith',3,'p_var','tp2_grammar.py',148),
+  ('var_operacoes -> variavel + = arg','var_operacoes',4,'p_var_operacoes','tp2_grammar.py',155),
+  ('var_operacoes -> variavel - = arg','var_operacoes',4,'p_var_operacoes','tp2_grammar.py',156),
+  ('var_operacoes -> variavel + +','var_operacoes',3,'p_var_operacoes','tp2_grammar.py',157),
+  ('var_operacoes -> variavel - -','var_operacoes',3,'p_var_operacoes','tp2_grammar.py',158),
+  ('number -> arith + arith','number',3,'p_arith_list','tp2_grammar.py',167),
+  ('number -> arith - arith','number',3,'p_arith_list','tp2_grammar.py',168),
+  ('number -> arith / arith','number',3,'p_arith_list','tp2_grammar.py',169),
+  ('number -> arith * arith','number',3,'p_arith_list','tp2_grammar.py',170),
+  ('number -> arith arith','number',2,'p_arith_list','tp2_grammar.py',171),
+  ('number -> num','number',1,'p_number','tp2_grammar.py',181),
 ]
